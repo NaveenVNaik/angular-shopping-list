@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Ingradient } from '../shared/ingradient.model';
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingListComponent implements OnInit {
 
+  ingradients : Ingradient[] = [
+    new Ingradient("Apples",5),
+    new Ingradient("Banana",10)
+  ]
   constructor() { }
 
   ngOnInit() {
