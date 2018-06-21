@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 
 
 @Component({
@@ -8,7 +8,11 @@ import { Component } from "@angular/core";
 })
 
 export class HeaderComponent{
-    
+    @Output() navClicked = new EventEmitter<boolean>();
+
+    onNavClicked = (navClickedItem:String) => {
+        this.navClicked.emit(navClickedItem === 'Recipes' ? true : false);
+    }
 }
 
 

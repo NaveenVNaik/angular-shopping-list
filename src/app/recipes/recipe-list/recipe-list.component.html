@@ -1,19 +1,10 @@
 <div class="row">
     <div class="col-xs-12">
         <button class="btn btn-success">New Recipe</button>
+        <hr>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-12">
-        <a href="#" class="list-group-item clearfix">
-            <div class="pull-left">
-                <h4 class="list-group-item-heading">Recipe Name</h4>
-                <p class="list-group-item-text">Description</p>
-            </div>
-            <span class="pull-right">
-                <img src="https://img.taste.com.au/P9x2Yltr/taste/2016/11/homemade-chocolate-cake-85524-1.jpeg" alt="" class="img-responsive" style="max-height: 50px;">
-            </span>
-        </a>
-    </div>
-</div>
-<app-recipe-item></app-recipe-item>
+<app-recipe-item *ngFor="let recipe of recipes" [recipe]="recipe"
+     (itemClicked)="onItemClicked($event)"
+>
+</app-recipe-item>
