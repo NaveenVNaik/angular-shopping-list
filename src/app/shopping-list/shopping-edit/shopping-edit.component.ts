@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Ingradient } from '../../shared/ingradient.model';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -6,8 +7,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit {
-  @Output() shoppingListEdited = 
-  new EventEmitter<{itemName:string,itemAmount:number,action:number}>();
+  @ViewChild('itemName') iName : ElementRef;
+  @ViewChild('itemAmount') iAmount : ElementRef;
+  @Output() shoppingListEdited = new EventEmitter<Ingradient>();
  
   constructor() { }
 
@@ -15,17 +17,9 @@ export class ShoppingEditComponent implements OnInit {
   }
 
   addToShoppingList(itemName, itemAmount){
-    // console.log(itemName.value+" "+itemAmount.value);
-    this.shoppingListEdited.emit(
-      { itemName: itemName.value, itemAmount: itemAmount.value,action:1}
-    );
-  }
-
-  deleteFromShoppingList(itemName, itemAmount){
-    // console.log(itemName.value + " " + itemAmount.value);
-    this.shoppingListEdited.emit(
-      { itemName: itemName.value, itemAmount: itemAmount.value, action: 2 }
-    );
+    const name : string = this.iName.nativeElement.value;
+    const amount : number = parseInt(this.iAmount.nativeElement.value);
+    this.shoppingListEdited.emit(new Ingradient(name,amount));
   }
 
 }
